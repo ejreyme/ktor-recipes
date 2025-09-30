@@ -1,0 +1,45 @@
+= ktor-google-app-engine
+
+https://ktor.io/docs/google-app-engine.html#configure-app-engine-settings[KTOR GOOGLE APP ENGINE DOCS]
+
+
+== Build and Deploy to Google App Engine
+
+=== Create a Google Cloud project
+
+[source,bash]
+----
+gcloud projects create ktor-sealedstack-gcp --set-as-default
+----
+
+- enable billing for the project
+
+=== Create an App Engine application
+
+[source,bash]
+----
+gcloud app create
+----
+
+- choose region...
+-  [18] us-east1      (supports standard and flexible and search_api)
+
+
+=== Deploy the application
+
+- service account needs
+* Storage Object Creator
+* Storage Object Viewer
+
+[source,bash]
+----
+./gradlew appengineDeploy
+----
+
+Deployed service [default] to [https://ktor-sealedstack-gcp.ue.r.appspot.com]
+
+You can stream logs from the command line by running:
+$ gcloud app logs tail -s default
+
+To view your application in the web browser run:
+$ gcloud app browse
